@@ -23,7 +23,7 @@
       $tempInFahrenheit = $weatherArray['main']['temp']*9/5 - 459.67;
 			$weather .= " Dengan suhu ".$tempInFahrenheit."&deg;F.";
     } else {
-			$weather = "Cuaca di  ".$_GET['city']." saat ini Tidak Ditemukan";
+			$weather = NULL;
     }
 
 	}
@@ -83,9 +83,7 @@
     if (isset($weather)) {
       echo '<div class="alert alert-success" role="alert">'.$weather.'</div>';
     } else{
-      if (empty($city)) {
-        echo '<divclass="alert alert-danger" role="alert">Sorry, that city cloud not be found.</div>';
-      }
+        echo '<div class="alert alert-danger" role="alert">Sorry, that city cloud not be found.</div>';
     }
 
 		?>
