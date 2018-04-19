@@ -18,11 +18,14 @@
 
 		$weatherArray = json_decode($urlContents, true);
 
-		$weather = "Cuaca di  ".$_GET['city']." saat ini adalah ".$weatherArray['weather'][0]['description'].".";
+    if ($weatherArray['cod'] == 200) {
+      $weather = "Cuaca di  ".$_GET['city']." saat ini adalah ".$weatherArray['weather'][0]['description'].".";
+      $tempInFahrenheit = $weatherArray['main']['temp']*9/5 - 459.67;
+			$weather .= " Dengan suhu ".$tempInFahrenheit."&deg;F.";
+    } else {
+			$weather = "Cuaca di  ".$_GET['city']." saat ini Tidak Ditemukan";
+    }
 
-		$tempInFahrenheit = $weatherArray['main']['temp']*9/5 - 459.67;
-
-		$weather .= " Dengan suhu ".$tempInFahrenheit."&deg;F.";
 	}
  ?>
 
